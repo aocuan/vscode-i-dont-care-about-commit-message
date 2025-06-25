@@ -1,23 +1,23 @@
 {
-  "publisher": "mefengl",
+  "publisher": "duoroudev",
   "name": "vscode-i-dont-care-about-commit-message-custom",
   "displayName": "%displayName%",
-  "version": "0.11.4",
+  "version": "0.1.0",
   "private": true,
   "description": "%description%",
-  "author": "mefengl",
+  "author": "duorou",
   "license": "MIT",
-  "funding": "https://github.com/sponsors/mefengl",
-  "homepage": "https://github.com/mefengl/vscode-i-dont-care-about-commit-message#readme",
+  "funding": "https://github.com/sponsors/duoroudev",
+  "homepage": "https://github.com/aocuan/vscode-i-dont-care-about-commit-message#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mefengl/vscode-i-dont-care-about-commit-message"
+    "url": "https://github.com/aocuan/vscode-i-dont-care-about-commit-message"
   },
   "bugs": {
-    "url": "https://github.com/mefengl/vscode-i-dont-care-about-commit-message/issues"
+    "url": "https://github.com/aocuan/vscode-i-dont-care-about-commit-message/issues"
   },
   "sponsor": {
-    "url": "https://github.com/sponsors/mefengl"
+    "url": "https://github.com/sponsors/aocuan"
   },
   "keywords": [
     "git",

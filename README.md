@@ -1,83 +1,84 @@
-<!-- DO NOT REMOVE - contributor_list:data:start:["mefengl", "renovate[bot]", "esonwong"]:end -->
-# I Don't Care About Commit Message
+# I Don't Care About Commit Message - Custom
 
-Yet another AI git commit plugin for VSCode, but without the need for manual confirmation!
+**🌍 Language:** English | [中文](README.zh-CN.md)
 
-Aiming to keep commit keystrokes to a bare minimum via LLM.
+---
 
-![I Don't Care About Commit Message](https://raw.githubusercontent.com/mefengl/vscode-i-dont-care-about-commit-message/main/res/vscode-i-dont-care-about-commit-message.gif "Demonstration of AI Git Commit Plugin")
+A customizable AI git commit plugin for VSCode with enhanced configuration options!
 
-[Visit Github Repository | 访问 Github 仓库 | Githubのリポジトリを見る](https://github.com/mefengl/vscode-i-dont-care-about-commit-message)
+This is a fork of the original plugin with additional features like customizable system prompts and lockfile configuration.
 
-[Join Discord Server | 加入 Discord 讨论 | Discordのディスカッションに参加する](https://discord.gg/pwTKpnc2sF)
+![I Don't Care About Commit Message](https://raw.githubusercontent.com/aocuan/vscode-i-dont-care-about-commit-message/main/res/vscode-i-dont-care-about-commit-message.gif "Demonstration of AI Git Commit Plugin")
 
-## Features ✨ - AI Git Commit Plugin
+[🔗 Visit Github Repository](https://github.com/aocuan/vscode-i-dont-care-about-commit-message)
 
-- **AI Git Commit**: Simplify your commits with `git add . -> git commit -m "AI Generated Message"`.
-- **AI Git Push**: Automate the entire process: `git add . -> git commit -m "AI Generated Message" -> git push`.
-- **AI Git Commit/Push (Minimal)**: Same as above but generates ultra-minimal 1-3 word commit messages.
+## ✨ Features
 
-> AI Git Commit/Push Stage: Same as above, but without using the command `git add .`.
+- **AI Git Commit**: Simplify your commits with `git add . -> git commit -m "AI Generated Message"`
+- **AI Git Push**: Automate the entire process: `git add . -> git commit -m "AI Generated Message" -> git push`
+- **AI Git Commit/Push (Minimal)**: Same as above but generates ultra-minimal 1-3 word commit messages
+- **Staged Operations**: Same as above, but without using the command `git add .`
+- **🆕 Customizable System Prompts**: Configure your own AI prompts for different commit styles
+- **🆕 Custom Lockfile Support**: Add your own lockfile types to exclude from analysis
 
-## Usage - AI Git Extension for VSCode
+## 🚀 Usage
 
-- `Ctrl+Shift+P`
-- Search for `AI Git Commit` or `AI Git Push`.
-- Press `Enter`.
-  > Will ask for OpenAI API Key if not set, or use GitHub Copilot if enabled.
-- Done!
+1. Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac)
+2. Search for `AI Git Commit` or `AI Git Push`
+3. Press `Enter`
+4. The plugin will ask for OpenAI API Key if not set, or use GitHub Copilot if enabled
+5. Done!
 
-What's more:
+**Pro Tip:** Add keyboard shortcuts to the commands for even faster commits!
 
-- Add shortcuts to the commands and use them like popping bubble wrap with this AI git extension!
+## ⚙️ Settings
 
-## Settings
-
-### Use GitHub Copilot
-
-Enable `useCopilot` option to use GitHub Copilot for generating commit messages instead of OpenAI API.
-This requires an active GitHub Copilot subscription.
-
-To select a specific Copilot model, use the command `AI Git Commit: Select Copilot Model`.
-
-### Model
-
-Specify the OpenAI Model. The default is `gpt-3.5-turbo`.
+### OpenAI Configuration
+- **OpenAI API Key**: Your OpenAI API key for GPT models
+- **OpenAI Base URL**: Custom API endpoint (default: `https://api.openai.com/v1`)
+- **Model**: Choose your preferred model (default: `gpt-3.5-turbo`)
 
 Consider these advanced models:
-
-- `gpt-3.5-turbo-16k`: Ideal for large file changes, although it can increase cost if unnecessary files are added and are still within the token limit.
-- `gpt-4`: An upgrade but at a higher expense.
+- `gpt-3.5-turbo-16k`: Ideal for large file changes, although it can increase cost
+- `gpt-4`: An upgrade but at a higher expense
 
 For more options, visit [OpenAI Models Documentation](https://platform.openai.com/docs/models).
 
-### Conventional Commits Format
+### GitHub Copilot
+- **Use Copilot**: Enable to use GitHub Copilot instead of OpenAI API (requires active subscription)
+- **Select Copilot Model**: Choose specific Copilot model via command palette
 
-Whether to use conventional commit, default is `false`.
+### 🆕 Custom Configuration
+- **System Prompt**: Customize the AI prompt for regular commit messages
+- **Minimal Prompt**: Customize the AI prompt for minimal commit messages
+- **Excluded Lockfiles**: Add/remove lockfile types to exclude from git diff analysis
 
-Looks like this:
+Default supported lockfiles:
+- `package-lock.json`, `yarn.lock` (Node.js)
+- `Gemfile.lock` (Ruby)
+- `composer.lock` (PHP)
+- `pnpm-lock.yaml` (PNPM)
+- `go.sum` (Go)
+- `cargo.lock` (Rust)
+- `poetry.lock` (Python)
+- `mix.lock` (Elixir)
 
-```plaintext
-<type>[optional scope]: <description>
+### Conventional Commits
+- **Use Conventional Commit**: Generate commits in conventional format
+- Format: `<type>[optional scope]: <description>`
 
-[optional body]
-
-[optional footer(s)]
+Examples:
+```
+feat(auth): add OAuth2 login support
+fix(ui): resolve button styling issue
+docs: update API documentation
 ```
 
-> It will be slower and just a little more expensive since it needs to generate more.
+> Note: Using conventional commits will be slower and slightly more expensive since it needs to generate more content.
 
-### OpenAI API Key
+## 🌍 Language Support
 
-Specify the OpenAI API Key for this AI git extension.
-
-### OpenAI API Base URL
-
-Specify the OpenAI API Base URL, default is `https://api.openai.com/v1`.
-
-## Language Support
-
-This AI git commit plugin interface supports multiple languages, making it accessible for developers around the world:
+The plugin interface supports 14+ languages, making it accessible for developers around the world:
 
 | Language            | Code   | Language            | Code   |
 | ------------------- | ------ | ------------------- | ------ |
@@ -90,18 +91,18 @@ This AI git commit plugin interface supports multiple languages, making it acces
 | Polski              | pl     | Čeština             | cs     |
 | Magyar              | hu     |                     |        |
 
-## Development - Building the AI Git Commit Plugin
+## 🛠️ Development
 
 For development, follow these steps:
 
-1. Clone the repository and navigate into it.
-2. Run `npm install` to install all the necessary dependencies.
-3. Run `npm run watch` to start the development server.
-4. Press `F5` to start the plugin in a new VSCode window.
+1. Clone the repository and navigate into it
+2. Run `npm install` to install all the necessary dependencies
+3. Run `npm run watch` to start the development server
+4. Press `F5` to start the plugin in a new VSCode window
 
-For testing, run `npm run test`.
+For testing, run `npm test`.
 
-## Credits
+## 🙏 Credits
 
 - `I don't care about cookies`: For the funny way of naming
 - [Simple Git](https://github.com/steveukx/git-js) @steveukx: It would be much harder without this
@@ -112,19 +113,11 @@ For testing, run `npm run test`.
 - [GitHub Copilot](https://github.com/features/copilot): Alternative AI provider for generating commit messages
 - [weekly](https://github.com/ruanyf/weekly) @ruanyf: For making this project known and used by more people
 
-## License
+## 📄 License
 
 MIT
 
-<!-- prettier-ignore-start -->
-<!-- DO NOT REMOVE - contributor_list:start -->
 ## 👥 Contributors
 
-- **[@mefengl](https://github.com/mefengl)**
-
-- **[@renovate[bot]](https://github.com/apps/renovate)**
-
-- **[@esonwong](https://github.com/esonwong)**
-
-<!-- DO NOT REMOVE - contributor_list:end -->
-<!-- prettier-ignore-end -->
+- **[@aocuan](https://github.com/aocuan)** - Custom version maintainer
+- **[@mefengl](https://github.com/mefengl)** - Original plugin author
