@@ -1,10 +1,10 @@
 {
   "publisher": "mefengl",
-  "name": "vscode-i-dont-care-about-commit-message",
-  "displayName": "I Don't Care About Commit Message",
+  "name": "vscode-i-dont-care-about-commit-message-custom",
+  "displayName": "%displayName%",
   "version": "0.11.4",
   "private": true,
-  "description": "Yet another AI git commit plugin, but without the need for manual confirmation.",
+  "description": "%description%",
   "author": "mefengl",
   "license": "MIT",
   "funding": "https://github.com/sponsors/mefengl",
@@ -43,43 +43,43 @@
     "commands": [
       {
         "command": "gitCommitAI",
-        "title": "AI Git Commit"
+        "title": "%command.gitCommitAI%"
       },
       {
         "command": "gitPushAI",
-        "title": "AI Git Push"
+        "title": "%command.gitPushAI%"
       },
       {
         "command": "gitCommitStagedAI",
-        "title": "AI Git Commit Staged"
+        "title": "%command.gitCommitStagedAI%"
       },
       {
         "command": "gitPushStagedAI",
-        "title": "AI Git Push Staged"
+        "title": "%command.gitPushStagedAI%"
       },
       {
         "command": "gitCommitX",
-        "title": "I Really Don't Care Commit"
+        "title": "%command.gitCommitX%"
       },
       {
         "command": "gitCommitMinimal",
-        "title": "AI Git Commit (Minimal)"
+        "title": "%command.gitCommitMinimal%"
       },
       {
         "command": "gitPushMinimal",
-        "title": "AI Git Push (Minimal)"
+        "title": "%command.gitPushMinimal%"
       },
       {
         "command": "gitCommitStagedMinimal",
-        "title": "AI Git Commit Staged (Minimal)"
+        "title": "%command.gitCommitStagedMinimal%"
       },
       {
         "command": "gitPushStagedMinimal",
-        "title": "AI Git Push Staged (Minimal)"
+        "title": "%command.gitPushStagedMinimal%"
       },
       {
         "command": "selectCopilotModel",
-        "title": "AI Git Commit: Select Copilot Model"
+        "title": "%command.selectCopilotModel%"
       }
     ],
     "configuration": {
@@ -87,32 +87,60 @@
         "iDontCareAboutCommitMessage.openaiBaseURL": {
           "type": "string",
           "default": "https://api.openai.com/v1",
-          "description": "OpenAI API Base URL"
+          "description": "%config.openaiBaseURL%"
         },
         "iDontCareAboutCommitMessage.openaiApiKey": {
           "type": "string",
           "default": "",
-          "description": "OpenAI API Key"
+          "description": "%config.openaiApiKey%"
         },
         "iDontCareAboutCommitMessage.model": {
           "type": "string",
           "default": "gpt-3.5-turbo",
-          "description": "OpenAI Model to be used"
+          "description": "%config.model%"
         },
         "iDontCareAboutCommitMessage.useConventionalCommit": {
           "type": "boolean",
           "default": false,
-          "description": "Whether to use conventional commit"
+          "description": "%config.useConventionalCommit%"
         },
         "iDontCareAboutCommitMessage.useCopilot": {
           "type": "boolean",
           "default": false,
-          "description": "Use GitHub Copilot instead of OpenAI API (requires Copilot subscription)"
+          "description": "%config.useCopilot%"
         },
         "iDontCareAboutCommitMessage.selectedCopilotModel": {
           "type": "string",
           "default": "",
-          "description": "ID of the selected Copilot model"
+          "description": "%config.selectedCopilotModel%"
+        },
+        "iDontCareAboutCommitMessage.systemPrompt": {
+          "type": "string",
+          "default": "only answer with single line of concise commit msg itself",
+          "description": "%config.systemPrompt%"
+        },
+        "iDontCareAboutCommitMessage.minimalPrompt": {
+          "type": "string",
+          "default": "write core change in one or two short words. use one word if clear enough. all lowercase. no punctuation.",
+          "description": "%config.minimalPrompt%"
+        },
+        "iDontCareAboutCommitMessage.excludedLockfiles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "package-lock.json",
+            "yarn.lock",
+            "Gemfile.lock",
+            "composer.lock",
+            "pnpm-lock.yaml",
+            "go.sum",
+            "cargo.lock",
+            "poetry.lock",
+            "mix.lock"
+          ],
+          "description": "%config.excludedLockfiles%"
         }
       }
     }

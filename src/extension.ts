@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import { simpleGit } from 'simple-git'
 import OpenAI from 'openai'
 import { i18n } from './i18n'
-import { checkLockfiles, getChangedLinesNumber, getGitInfo, processChatCompletion } from './pure'
+import { checkLockfiles, getChangedLinesNumber, getContextLines, getGitInfo, processChatCompletion } from './pure'
 
 const workspaceRoot = vscode.workspace.workspaceFolders?.[0].uri.fsPath
 const gitHelper = simpleGit(workspaceRoot)
@@ -80,8 +80,13 @@ async function getCopilotCompletion(gitInfo: string, isMinimal = false): Promise
       return null
   }
 
+  const config = vscode.workspace.getConfiguration('iDontCareAboutCommitMessage')
+  const systemPrompt = isMinimal 
+    ? config.get('minimalPrompt') as string || 'write core change in one or two short words. use one word if clear enough. all lowercase. no punctuation.'
+    : config.get('systemPrompt') as string || 'only answer with single line of concise commit msg itself'
+  
   const messages = [
-    vscode.LanguageModelChatMessage.User(isMinimal ? 'write core change in one or two short words. use one word if clear enough. all lowercase. no punctuation.' : 'only answer with single line of concise commit msg itself'),
+    vscode.LanguageModelChatMessage.User(systemPrompt),
     vscode.LanguageModelChatMessage.User(gitInfo),
   ]
 
@@ -134,7 +139,11 @@ async function getChatCompletion(gitInfo: string, isMinimal = false) {
       .get('openaiBaseURL') as string | undefined,
   })
 
-  const useConventionalCommit = !isMinimal && vscode.workspace.getConfiguration('iDontCareAboutCommitMessage').get('useConventionalCommit') as boolean
+  const config = vscode.workspace.getConfiguration('iDontCareAboutCommitMessage')
+  const useConventionalCommit = !isMinimal && config.get('useConventionalCommit') as boolean
+  const systemPrompt = isMinimal 
+    ? config.get('minimalPrompt') as string || 'write core change in one or two short words. use one word if clear enough. all lowercase. no punctuation.'
+    : config.get('systemPrompt') as string || 'only answer with single line of concise commit msg itself'
 
   try {
     return await openai.chat.completions.create({
@@ -142,9 +151,7 @@ async function getChatCompletion(gitInfo: string, isMinimal = false) {
       messages: [
         {
           role: 'system',
-          content: isMinimal
-            ? 'write core change in one or two short words. use one word if clear enough. all lowercase. no punctuation.'
-            : 'only answer with single line of concise commit msg itself',
+          content: systemPrompt,
         },
         {
           role: 'user',
@@ -228,12 +235,15 @@ async function processGitOperation(
     await gitHelper.add('.')
 
   const diffFiles = (await gitHelper.diff(['--name-only', '--staged'])).split('\n')
-  const changedLockfiles = checkLockfiles(diffFiles)
+  const config = vscode.workspace.getConfiguration('iDontCareAboutCommitMessage')
+  const excludedLockfiles = config.get('excludedLockfiles') as string[]
+  const changedLockfiles = checkLockfiles(diffFiles, excludedLockfiles)
   const stat = await gitHelper.diff(['--shortstat', '--staged'])
 
   let gitInfo = ''
-  const shouldMoreContext = getChangedLinesNumber(stat) < 10
-  const diffOptions = ['--staged', ...(shouldMoreContext ? ['-U10'] : [])]
+  const changedLinesCount = getChangedLinesNumber(stat)
+  const contextLines = getContextLines(changedLinesCount)
+  const diffOptions = ['--staged', `-U${contextLines}`]
   try {
     const diff = await gitHelper.diff([...diffOptions, ...changedLockfiles.map(lockfile => `:!${lockfile}`)])
     gitInfo = getGitInfo({ diff, changedLockfiles })

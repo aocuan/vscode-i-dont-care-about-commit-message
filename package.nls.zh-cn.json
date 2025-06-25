@@ -1,0 +1,23 @@
+{
+  "displayName": "我不在乎提交消息 - 定制版",
+  "description": "让 AI 帮你写 Git 提交消息，一键提交无需确认！",
+  "command.gitCommitAI": "AI Git 提交",
+  "command.gitPushAI": "AI Git 推送",
+  "command.gitCommitStagedAI": "AI Git 提交暂存",
+  "command.gitPushStagedAI": "AI Git 推送暂存",
+  "command.gitCommitX": "我真的不在乎提交",
+  "command.gitCommitMinimal": "AI Git 提交（极简）",
+  "command.gitPushMinimal": "AI Git 推送（极简）",
+  "command.gitCommitStagedMinimal": "AI Git 提交暂存（极简）",
+  "command.gitPushStagedMinimal": "AI Git 推送暂存（极简）",
+  "command.selectCopilotModel": "选择 Copilot 模型",
+  "config.openaiBaseURL": "OpenAI 接口地址",
+  "config.openaiApiKey": "OpenAI 密钥",
+  "config.model": "OpenAI 模型选择",
+  "config.useConventionalCommit": "使用规范化提交格式",
+  "config.useCopilot": "使用 GitHub Copilot（需要订阅）",
+  "config.selectedCopilotModel": "当前选择的 Copilot 模型",
+  "config.systemPrompt": "AI 生成提交消息的系统提示词",
+  "config.minimalPrompt": "AI 生成极简提交消息的系统提示词",
+  "config.excludedLockfiles": "从 Git 差异分析中排除的锁文件列表"
+}

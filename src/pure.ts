@@ -54,9 +54,20 @@ export function processChatCompletion(chatCompletion: any, useConventionalCommit
   }
 }
 
-export function checkLockfiles(diffFiles: string[]) {
-  return ['package-lock.json', 'yarn.lock', 'Gemfile.lock', 'composer.lock', 'pnpm-lock.yaml', 'go.sum', 'cargo.lock', 'poetry.lock', 'mix.lock']
-    .filter(lockfile => diffFiles.includes(lockfile))
+export function checkLockfiles(diffFiles: string[], excludedLockfiles?: string[]) {
+  const defaultLockfiles = ['package-lock.json', 'yarn.lock', 'Gemfile.lock', 'composer.lock', 'pnpm-lock.yaml', 'go.sum', 'cargo.lock', 'poetry.lock', 'mix.lock']
+  const lockfilesToCheck = excludedLockfiles || defaultLockfiles
+  return lockfilesToCheck.filter(lockfile => diffFiles.includes(lockfile))
+}
+
+export function getContextLines(changedLines: number): number {
+  if (changedLines <= 5)
+    return 30
+  if (changedLines <= 15)
+    return 20
+  if (changedLines <= 50)
+    return 10
+  return 5
 }
 
 export function getGitInfo({ diff, changedLockfiles }: {

@@ -1,0 +1,23 @@
+{
+  "displayName": "I Don't Care About Commit Message - Custom",
+  "description": "Yet another AI git commit plugin, but without the need for manual confirmation.",
+  "command.gitCommitAI": "AI Git Commit",
+  "command.gitPushAI": "AI Git Push",
+  "command.gitCommitStagedAI": "AI Git Commit Staged",
+  "command.gitPushStagedAI": "AI Git Push Staged",
+  "command.gitCommitX": "I Really Don't Care Commit",
+  "command.gitCommitMinimal": "AI Git Commit (Minimal)",
+  "command.gitPushMinimal": "AI Git Push (Minimal)",
+  "command.gitCommitStagedMinimal": "AI Git Commit Staged (Minimal)",
+  "command.gitPushStagedMinimal": "AI Git Push Staged (Minimal)",
+  "command.selectCopilotModel": "AI Git Commit: Select Copilot Model",
+  "config.openaiBaseURL": "OpenAI API Base URL",
+  "config.openaiApiKey": "OpenAI API Key",
+  "config.model": "OpenAI Model to be used",
+  "config.useConventionalCommit": "Whether to use conventional commit format",
+  "config.useCopilot": "Use GitHub Copilot instead of OpenAI API (requires Copilot subscription)",
+  "config.selectedCopilotModel": "ID of the selected Copilot model",
+  "config.systemPrompt": "System prompt for AI to generate commit messages",
+  "config.minimalPrompt": "System prompt for AI to generate minimal commit messages",
+  "config.excludedLockfiles": "List of lockfiles to exclude from git diff analysis"
+}
